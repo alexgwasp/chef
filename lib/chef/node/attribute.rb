@@ -399,7 +399,7 @@ class Chef
        #
 
       def merged_attributes(*path)
-        immutablize(merge_all(path))
+        merge_all(path)
       end
 
       def combined_override(*path)
@@ -535,10 +535,6 @@ class Chef
           merge_overrides(path),
           apply_path(@automatic, path),
         ]
-
-        components.map! do |component|
-          safe_dup(component)
-        end
 
         return nil if components.compact.empty?
 
